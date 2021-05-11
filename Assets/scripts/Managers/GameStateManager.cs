@@ -10,7 +10,8 @@ public class GameStateManager : MonoBehaviour
     public GameObject bluePlayer;
     public float playersDistanceThresh;
 
-    private bool playersInContact;
+    [HideInInspector]
+    public bool playersInContact;
 
     void Awake()
     {
@@ -36,6 +37,6 @@ public class GameStateManager : MonoBehaviour
             playersInContact = true;
         }
 
-        Debug.Log(playersInContact);
+        //Debug.Log(playersInContact);
     }
 }
