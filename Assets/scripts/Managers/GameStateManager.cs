@@ -37,6 +37,6 @@ public class GameStateManager : MonoBehaviour
             playersInContact = true;
         }
 
-        //Debug.Log(playersInContact);
+        //  Debug.Log(playersInContact);
     }
 }
