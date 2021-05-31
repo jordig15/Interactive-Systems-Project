@@ -2197,12 +2197,12 @@ PrefabInstance:
     - target: {fileID: 3918374998429540360, guid: 9f930e3fb7bdfeb4e8fedc37994f1166,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0546395
+      value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 3918374998429540360, guid: 9f930e3fb7bdfeb4e8fedc37994f1166,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.8301555
+      value: 0.88
       objectReference: {fileID: 0}
     - target: {fileID: 3918374998429540360, guid: 9f930e3fb7bdfeb4e8fedc37994f1166,
         type: 3}
@@ -2247,17 +2247,17 @@ PrefabInstance:
     - target: {fileID: 3918374998429540360, guid: 9f930e3fb7bdfeb4e8fedc37994f1166,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3918374998429540360, guid: 9f930e3fb7bdfeb4e8fedc37994f1166,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.3333335
+      value: 0.89
       objectReference: {fileID: 0}
     - target: {fileID: 3918374998429540360, guid: 9f930e3fb7bdfeb4e8fedc37994f1166,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.8000001
+      value: 1.84
       objectReference: {fileID: 0}
     - target: {fileID: 3918374998429540361, guid: 9f930e3fb7bdfeb4e8fedc37994f1166,
         type: 3}
@@ -2267,10 +2267,31 @@ PrefabInstance:
     - target: {fileID: 3918374998429540364, guid: 9f930e3fb7bdfeb4e8fedc37994f1166,
         type: 3}
       propertyPath: nextSceneName
-      value: 3rd room
+      value: Corridor
       objectReference: {fileID: 0}
+    - target: {fileID: 3918374998429540364, guid: 9f930e3fb7bdfeb4e8fedc37994f1166,
+        type: 3}
+      propertyPath: bluePlayer
+      value: 
+      objectReference: {fileID: 1723287128}
+    - target: {fileID: 3918374998429540364, guid: 9f930e3fb7bdfeb4e8fedc37994f1166,
+        type: 3}
+      propertyPath: redPlayer
+      value: 
+      objectReference: {fileID: 1486278142}
+    - target: {fileID: 3918374998429540364, guid: 9f930e3fb7bdfeb4e8fedc37994f1166,
+        type: 3}
+      propertyPath: collider
+      value: 
+      objectReference: {fileID: 4782571763226283958}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f930e3fb7bdfeb4e8fedc37994f1166, type: 3}
+--- !u!1 &4782571763226283958 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3918374998429540361, guid: 9f930e3fb7bdfeb4e8fedc37994f1166,
+    type: 3}
+  m_PrefabInstance: {fileID: 4782571763226283957}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5982101144501706738
 PrefabInstance:
   m_ObjectHideFlags: 0

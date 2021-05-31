@@ -6,63 +6,55 @@ using UnityEngine.SceneManagement;
 public class ChangeRoom : MonoBehaviour
 {
     public string nextSceneName;
-    
-    public float cooldown = 1.5f;
+    public GameObject redPlayer;
+    public GameObject bluePlayer;
+    public GameObject collider;
+
+    public float colliderPlayersDist = 15.0f;
+
+    public float cooldown = 1.5f;    
+
     float firstTime;
+    
     bool playersInContact;
-    bool coliderActivated;
 
     // Start is called before the first frame update
     void Start()
     {
-        coliderActivated = false;
-        firstTime = 0;
+        firstTime = -1.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (coliderActivated)
-        {
-            if (testCooldown())
-            {
-                changeRoom();
-            }
+        bool playersInContact = GameStateManager.Instance.playersInContact;
+
+        if (playersInContact && playerNearToDoor())
+        {        
+            if(firstTime == -1.0f) firstTime = Time.time; 
+            else if (testCooldown()) changeRoom();            
         }
+
+        else if(firstTime != -1.0f) firstTime = -1.0f;
     }
 
-    void OnTriggerEnter(Collider other)
+    bool playerNearToDoor()
     {
-        playersInContact = GameStateManager.Instance.playersInContact;
-        Debug.Log(playersInContact);
-
-        if ((other.CompareTag("Player1") || other.CompareTag("Player2")) && playersInContact)
-        {
-            if (firstTime == 0)
-            {
-                Debug.Log("first time");
-                firstTime = Time.time;
-                coliderActivated = true;
-            }
-        }
-
+        if (Vector3.Distance(collider.transform.position, redPlayer.transform.position) < colliderPlayersDist) return true;
+        return false;
     }
 
     bool testCooldown()
     {
         float timeDif = Time.time - firstTime;
         Debug.Log(timeDif);
-        return (timeDif > cooldown) && (playersInContact);
+        return (timeDif > cooldown);
     }
 
     void changeRoom()
     {
         Debug.Log("Escena canviada!");
-        firstTime = 0;
-        coliderActivated = false;
-
-        SceneManager.LoadScene(nextSceneName);
-
-        
+        firstTime = -1.0f;
+        SceneManager.LoadScene(nextSceneName);        
     }
 }
