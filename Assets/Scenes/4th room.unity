@@ -747,6 +747,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 508131454}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &508131456 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fc6c531714dc3a343ac62969000a314c,
+    type: 3}
+  m_PrefabInstance: {fileID: 508131454}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &508131457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508131456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc744c11b430be044bc50d6888c63f37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collider: {fileID: 508131456}
+  colliderPlayersDist: 15
+  cooldown: 1.5
 --- !u!1001 &523251956
 PrefabInstance:
   m_ObjectHideFlags: 0
