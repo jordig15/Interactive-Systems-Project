@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/3rd room.unity
     guid: e26272f103d20774a8e30e0fb063e149
+  - enabled: 1
+    path: Assets/Scenes/Corridor.unity
+    guid: 7e542174377b8df43a46e0a6771eccf3
   m_configObjects: {}

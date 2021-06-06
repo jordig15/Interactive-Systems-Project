@@ -5,23 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class ChangeRoom : MonoBehaviour
 {
-    public string nextSceneName;
-    public GameObject redPlayer;
-    public GameObject bluePlayer;
-    public GameObject collider;
+    public string nextSceneName;    
 
-    public float colliderPlayersDist = 15.0f;
+    private GameObject redPlayer;
+    private GameObject bluePlayer;    
 
-    public float cooldown = 1.5f;    
+    private float cooldown = 1.0f;
+    private float colliderPlayersDist = 20.0f;
 
-    float firstTime;
-    
-    bool playersInContact;
+    private float firstTime;    
+    private bool playersInContact;
 
     // Start is called before the first frame update
     void Start()
     {
-        firstTime = -1.0f;
+        redPlayer = GameObject.Find("Red Player");
+        bluePlayer = GameObject.Find("Blue Player");
+
+        firstTime = -1.0f;        
     }
 
     // Update is called once per frame
@@ -40,14 +41,14 @@ public class ChangeRoom : MonoBehaviour
 
     bool playerNearToDoor()
     {
-        if (Vector3.Distance(collider.transform.position, redPlayer.transform.position) < colliderPlayersDist) return true;
+        if (Vector3.Distance(GetComponent<Collider>().transform.position, redPlayer.transform.position) < colliderPlayersDist) return true;
         return false;
     }
 
     bool testCooldown()
     {
         float timeDif = Time.time - firstTime;
-        Debug.Log(timeDif);
+        //Debug.Log(timeDif);
         return (timeDif > cooldown);
     }
 
@@ -55,6 +56,7 @@ public class ChangeRoom : MonoBehaviour
     {
         Debug.Log("Escena canviada!");
         firstTime = -1.0f;
-        SceneManager.LoadScene(nextSceneName);        
+        
+        SceneManager.LoadScene(nextSceneName);                
     }
 }
