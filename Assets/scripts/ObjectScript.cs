@@ -120,7 +120,10 @@ public class ObjectScript : MonoBehaviour
     }
 
     void catchObject(bool redPlayerNear, bool bluePlayerNear)
-    {   
+    {
+
+        GameObject DroppedObjects = GameObject.Find("DroppedObjects");
+
         if (redPlayerNear)
         {
             catcherPlayer = GameObject.Find(redPlayerName);
@@ -128,8 +131,8 @@ public class ObjectScript : MonoBehaviour
             ObjectsManager.Instance.untagAllObjectsWithTag(redPlayerObjTag);            
             gameObject.tag = redPlayerObjTag;            
             if (ObjectsManager.Instance.redPlayerObject != null)
-            {                             
-                ObjectsManager.Instance.redPlayerObject.transform.parent = null;               
+            {
+                ObjectsManager.Instance.redPlayerObject.transform.SetParent(DroppedObjects.transform);               
                 ObjectsManager.Instance.redPlayerObject = null; // l'anterior objecte que estava agafant el jugador, ja no el té                                
             }            
         }
@@ -144,7 +147,7 @@ public class ObjectScript : MonoBehaviour
 
             if (ObjectsManager.Instance.bluePlayerObject != null)
             {
-                ObjectsManager.Instance.bluePlayerObject.transform.parent = null;
+                ObjectsManager.Instance.bluePlayerObject.transform.SetParent(DroppedObjects.transform);
                 ObjectsManager.Instance.bluePlayerObject = null; // l'anterior objecte que estava agafant el jugador, ja no el té                
             }            
         }
