@@ -61,7 +61,7 @@ public class ObjectsManager : MonoBehaviour
             bluePlayerObject = obj;            
         }
 
-        Debug.Log("CATCHED OBJECT!" + ", " + redPlayerObject + " | " + bluePlayerObject);
+        Debug.Log("CATCHED OBJECT!" + " | Red player object: " + redPlayerObject + " | Blue player object: " + bluePlayerObject);
     }
 
     public void untagAllObjectsWithTag(string tagName)
@@ -70,8 +70,7 @@ public class ObjectsManager : MonoBehaviour
         for(int i=0;i<objs.Length; i++)
         {
             GameObject obj = objs[i];
-            obj.tag = "Untagged";
-            Debug.Log(obj.name + " | Removed tag");           
+            obj.tag = "Untagged";            
         }
     }
 }

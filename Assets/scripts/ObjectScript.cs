@@ -9,7 +9,7 @@ public class ObjectScript : MonoBehaviour
     private Vector3 objectPlayerDisp = new Vector3(-5.0f, 5.0f, -5.0f);
 
     private float cooldown = 2.0f;
-    private float coliderPlayerDist = 10.0f;
+    private float coliderPlayerDist = 15.0f;
 
     private string redPlayerName = "Red Player";
     private string bluePlayerName = "Blue Player";
@@ -63,20 +63,20 @@ public class ObjectScript : MonoBehaviour
         bool redPlayerNear = playerNearToObj(redPlayerName);
         bool bluePlayerNear = playerNearToObj(bluePlayerName);        
 
-        if (catcherPlayer != null) //un jugador porta l'objecte
+        if (catcherPlayer != null) //un jugador porta aquest objecte
         {            
-            if (ObjectsManager.Instance.bluePlayerObject != null && bluePlayerNear) {  // BLUE PLAYER aprop del objecte                
+            if (ObjectsManager.Instance.bluePlayerObject != null && bluePlayerNear) {  // BLUE PLAYER aprop del objecte i porta un altre               
                 updateObjectPos(ObjectsManager.Instance.bluePlayerObject, redPlayerNear, bluePlayerNear);
             }
 
-            else if (ObjectsManager.Instance.redPlayerObject != null && redPlayerNear) { // RED PLAYER aprop del objecte
+            else if (ObjectsManager.Instance.redPlayerObject != null && redPlayerNear){ // RED PLAYER aprop del objecte i porta un altre
                 updateObjectPos(ObjectsManager.Instance.redPlayerObject, redPlayerNear, bluePlayerNear);
             }
-            else if (firstTime != -1.0f) firstTime = -1.0f;
+            else if (firstTime != -1.0f) firstTime = -1.0f; //cap jugador està en posició de agafar un objecte
         }
-        else //objecte no agafat
+        else // cap jugador ha agafat l'objecte
         {
-            if (redPlayerNear || bluePlayerNear)
+            if (redPlayerNear || bluePlayerNear) //si algun jugador està aprop d'un objecte
             {
                 if (firstTime == -1.0f) firstTime = Time.time;
                 else if (testCooldown()) catchObject(redPlayerNear, bluePlayerNear);
@@ -88,13 +88,13 @@ public class ObjectScript : MonoBehaviour
 
     void updateObjectPos(ObjectScript playerObject, bool redPlayerNear, bool bluePlayerNear)
     {
-        if (playerObject.transform == this.transform) //move objetc to player pos
+        if (playerObject.transform == this.transform) //el objecte el té un jugador, actualitzar la seva posició
         {
             this.transform.position = catcherPlayer.transform.position + objectPlayerDisp;
         }
-        else //change object 
+        else  //iniciar el cooldown
         {            
-            if (firstTime == -1.0f) firstTime = Time.time;
+            if (firstTime == -1.0f) firstTime = Time.time; //si no s'ha entrat al cooldown
             else if (testCooldown())
             {
                 catchObject(redPlayerNear, bluePlayerNear);
