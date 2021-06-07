@@ -7,7 +7,8 @@ TagManager:
   - Player1
   - Indicator
   - Player2
-  - Object
+  - BluePlayerObject
+  - RedPlayerObject
   layers:
   - Default
   - TransparentFX

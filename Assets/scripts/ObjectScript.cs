@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectScript : MonoBehaviour
 {
-    private GameObject DontDestroyEntities;
+    private GameObject DontDestroyEntities;    
 
     private Vector3 objectPlayerDisp = new Vector3(-5.0f, 5.0f, -5.0f);
 
@@ -13,7 +13,11 @@ public class ObjectScript : MonoBehaviour
 
     private string redPlayerName = "Red Player";
     private string bluePlayerName = "Blue Player";
-    
+
+    private string redPlayerObjTag = "RedPlayerObject";    
+    private string bluePlayerObjTag = "BluePlayerObject";
+
+
     private GameObject catcherPlayer;
     float firstTime;    
 
@@ -23,7 +27,7 @@ public class ObjectScript : MonoBehaviour
     {        
         controlDuplicateObjects();
 
-        DontDestroyEntities = GameObject.Find("DontDestroyEntities");
+        DontDestroyEntities = GameObject.Find("DontDestroyEntities");        
         firstTime = -1.0f;
         catcherPlayer = null;
     }
@@ -44,9 +48,9 @@ public class ObjectScript : MonoBehaviour
             GameObject obj = Object.FindObjectsOfType<ObjectScript>()[i].gameObject;
             if (obj.name == this.gameObject.name)
             {
-                if (this.transform.parent != DontDestroyEntities && objectsCounter > 1)
-                {                    
-                    Destroy(gameObject);
+                if (obj.tag != redPlayerObjTag && obj.tag != bluePlayerObjTag && objectsCounter > 1)
+                {
+                    Destroy(gameObject);                    
                 }
             }
         }
@@ -57,19 +61,16 @@ public class ObjectScript : MonoBehaviour
     {        
 
         bool redPlayerNear = playerNearToObj(redPlayerName);
-        bool bluePlayerNear = playerNearToObj(bluePlayerName);
-        
+        bool bluePlayerNear = playerNearToObj(bluePlayerName);        
 
         if (catcherPlayer != null) //un jugador porta l'objecte
-        {
-            Debug.Log(ObjectsManager.Instance.bluePlayerObject + " | " + ObjectsManager.Instance.redPlayerObject);
-
+        {            
             if (ObjectsManager.Instance.bluePlayerObject != null && bluePlayerNear) {  // BLUE PLAYER aprop del objecte                
-                niIdea(ObjectsManager.Instance.bluePlayerObject, redPlayerNear, bluePlayerNear);
+                updateObjectPos(ObjectsManager.Instance.bluePlayerObject, redPlayerNear, bluePlayerNear);
             }
 
             else if (ObjectsManager.Instance.redPlayerObject != null && redPlayerNear) { // RED PLAYER aprop del objecte
-                niIdea(ObjectsManager.Instance.redPlayerObject, redPlayerNear, bluePlayerNear);
+                updateObjectPos(ObjectsManager.Instance.redPlayerObject, redPlayerNear, bluePlayerNear);
             }
             else if (firstTime != -1.0f) firstTime = -1.0f;
         }
@@ -85,7 +86,7 @@ public class ObjectScript : MonoBehaviour
         }
     }
 
-    void niIdea(ObjectScript playerObject, bool redPlayerNear, bool bluePlayerNear)
+    void updateObjectPos(ObjectScript playerObject, bool redPlayerNear, bool bluePlayerNear)
     {
         if (playerObject.transform == this.transform) //move objetc to player pos
         {
@@ -119,13 +120,17 @@ public class ObjectScript : MonoBehaviour
     }
 
     void catchObject(bool redPlayerNear, bool bluePlayerNear)
-    {
+    {   
         if (redPlayerNear)
         {
             catcherPlayer = GameObject.Find(redPlayerName);
-            if(ObjectsManager.Instance.redPlayerObject != null)
-            {
-                ObjectsManager.Instance.redPlayerObject.catcherPlayer = null; // l'anterior objecte que estava agafant el jugador, ja no el té
+
+            ObjectsManager.Instance.untagAllObjectsWithTag(redPlayerObjTag);            
+            gameObject.tag = redPlayerObjTag;            
+            if (ObjectsManager.Instance.redPlayerObject != null)
+            {                             
+                ObjectsManager.Instance.redPlayerObject.transform.parent = null;               
+                ObjectsManager.Instance.redPlayerObject = null; // l'anterior objecte que estava agafant el jugador, ja no el té                                
             }            
         }
 
@@ -133,18 +138,21 @@ public class ObjectScript : MonoBehaviour
         else if (bluePlayerNear)
         {
             catcherPlayer = GameObject.Find(bluePlayerName);
-            if(ObjectsManager.Instance.bluePlayerObject != null)
+
+            ObjectsManager.Instance.untagAllObjectsWithTag(bluePlayerObjTag);            
+            gameObject.tag = bluePlayerObjTag;
+
+            if (ObjectsManager.Instance.bluePlayerObject != null)
             {
-                ObjectsManager.Instance.bluePlayerObject.catcherPlayer = null; // l'anterior objecte que estava agafant el jugador, ja no el té
+                ObjectsManager.Instance.bluePlayerObject.transform.parent = null;
+                ObjectsManager.Instance.bluePlayerObject = null; // l'anterior objecte que estava agafant el jugador, ja no el té                
             }            
         }
 
         firstTime = -1.0f;        
+        this.transform.SetParent(DontDestroyEntities.transform);        
 
-        this.transform.SetParent(DontDestroyEntities.transform);
-        
-        ObjectsManager.Instance.catchObject(catcherPlayer.name, this);
-       
+        ObjectsManager.Instance.catchObject(catcherPlayer.name, this);        
     }
 
 }

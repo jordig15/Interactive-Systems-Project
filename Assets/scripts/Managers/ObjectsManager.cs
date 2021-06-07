@@ -8,6 +8,9 @@ public class ObjectsManager : MonoBehaviour
 
     private GameObject redPlayer;
     private GameObject bluePlayer;
+    
+    private string redPlayerObjTag = "RedPlayerObject";    
+    private string bluePlayerObjTag = "BluePlayerObject";
 
     //players objects
     [HideInInspector]
@@ -19,7 +22,19 @@ public class ObjectsManager : MonoBehaviour
     {        
         Instance = this;        
         redPlayer = GameObject.Find("Red Player");
-        bluePlayer = GameObject.Find("Blue Player");        
+        bluePlayer = GameObject.Find("Blue Player");              
+
+        for (int i = 0; i < Object.FindObjectsOfType<ObjectScript>().Length; i++)
+        {
+            if(Object.FindObjectsOfType<ObjectScript>()[i].gameObject.tag == redPlayerObjTag)
+            {
+                redPlayerObject = Object.FindObjectsOfType<ObjectScript>()[i];
+            }
+            else if (Object.FindObjectsOfType<ObjectScript>()[i].gameObject.tag == bluePlayerObjTag)
+            {
+                bluePlayerObject = Object.FindObjectsOfType<ObjectScript>()[i];
+            }
+        }
     }
 
     // Start is called before the first frame update
@@ -49,18 +64,14 @@ public class ObjectsManager : MonoBehaviour
         Debug.Log("CATCHED OBJECT!" + ", " + redPlayerObject + " | " + bluePlayerObject);
     }
 
-    /*public bool playerHasObject(string playerName)
+    public void untagAllObjectsWithTag(string tagName)
     {
-        if(playerName == redPlayer.name)
+        GameObject[] objs = GameObject.FindGameObjectsWithTag(tagName);
+        for(int i=0;i<objs.Length; i++)
         {
-            if (redPlayerObject != null) return true;
+            GameObject obj = objs[i];
+            obj.tag = "Untagged";
+            Debug.Log(obj.name + " | Removed tag");           
         }
-        else if(playerName == bluePlayer.name)
-        {
-            if (bluePlayerObject != null) return true;
-        }
-
-        return false;
-    }*/
-
+    }
 }
