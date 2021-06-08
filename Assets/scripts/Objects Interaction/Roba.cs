@@ -2,47 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LlarDeFoc : MonoBehaviour
+public class Roba : MonoBehaviour
 {
     public float colliderPlayerDist = 10.0f;
     public float cooldown = 1.5f;
-    public string extintorName = "Fire Extinguisher";
+    public string robaName = "suit";
     public string containerName;
 
     private string redPlayerName = "Red Player";
     private string bluePlayerName = "Blue Player";
     private float firstTime;
-
-    private GameObject focGameObject;
+    
     private GameObject container;
-
-    private bool focActive;
+    
     // Start is called before the first frame update
     void Start()
     {
         firstTime = -1.0f;                
-
-        focGameObject = GameObject.Find("fire");
+        
         container = GameObject.Find(containerName);        
         if(container.tag == "active")
-        {
-            focActive = true;
-            focGameObject.active = true;
+        {            
         }
         else if(container.tag == "not active")
-        {
-            focActive = false;
-            focGameObject.active = false; //posar inactiu el foc al joc
+        {            
+            this.gameObject.active = false;
         }
     }
 
     // Update is called once per frame
     void Update()
     {        
-        if (focActive) UpdateLlarDeFoc();
+        UpdateRentadora();
     }
 
-    void UpdateLlarDeFoc()
+    void UpdateRentadora()
     {
         bool redPlayerNear = playerNearToObj(redPlayerName);
         bool bluePlayerNear = playerNearToObj(bluePlayerName);
@@ -51,24 +45,24 @@ public class LlarDeFoc : MonoBehaviour
         {
             if (redPlayerNear && ObjectsManager.Instance.redPlayerObject != null) //vermell aprop de la llar de foc i porta algun objecte
             {
-                if (ObjectsManager.Instance.redPlayerObject.gameObject.name == extintorName) //vermell aprop i porta un extintor
+                if (ObjectsManager.Instance.redPlayerObject.gameObject.name == robaName) //vermell aprop i porta un extintor
                 {
                     if (firstTime == -1.0f) firstTime = Time.time; //si no s'ha entrat al cooldown
                     else if (testCooldown())
                     {
-                        Debug.Log("RED PLAYER APAGA FOC");
+                        Debug.Log("RED PLAYER HA POSAT LA RENTADORA");
                         interact();
                     }                   
                 }
             }
             else if (bluePlayerNear && ObjectsManager.Instance.bluePlayerObject != null) //blau aprop de la llar de foc i porta algun objecte
             {
-                if (ObjectsManager.Instance.bluePlayerObject.gameObject.name == extintorName) //blau aprop i porta un extintor
+                if (ObjectsManager.Instance.bluePlayerObject.gameObject.name == robaName) //blau aprop i porta un extintor
                 {
                     if (firstTime == -1.0f) firstTime = Time.time; //si no s'ha entrat al cooldown
                     else if (testCooldown())
                     {
-                        Debug.Log("BLUE PLAYER APAGA FOC");
+                        Debug.Log("BLUE PLAYER HA POSAT LA RENTADORA");
                         interact();
                     }                    
                 }
@@ -78,11 +72,13 @@ public class LlarDeFoc : MonoBehaviour
     }
 
     void interact()
-    {
-        focGameObject.active = false; //posar inactiu el foc al joc
-        focActive = false;
+    {        
+        this.gameObject.active = false;
         container.tag = "not active";
-        
+
+        GameObject DroppedObjects = GameObject.Find("DroppedObjects");
+
+        //FER QUE APAREIXI LA TARJETA PER A OBRIR LA CAIXA FORTA!
     }
 
     bool playerNearToObj(string playerName)

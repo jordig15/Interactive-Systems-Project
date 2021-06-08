@@ -6,8 +6,10 @@ public class ObjectsManager : MonoBehaviour
 {
     public static ObjectsManager Instance; //instance
 
-    private GameObject redPlayer;
-    private GameObject bluePlayer;
+    [HideInInspector]
+    public GameObject redPlayer;
+    [HideInInspector]
+    public GameObject bluePlayer;
     
     private string redPlayerObjTag = "RedPlayerObject";    
     private string bluePlayerObjTag = "BluePlayerObject";
@@ -37,16 +39,9 @@ public class ObjectsManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log("RED: " + redPlayerObject + " | BLUE: " + bluePlayerObject);
     }
 
     public void catchObject(string catcherPlayerName, ObjectScript obj) // quan s'agafa un objecte

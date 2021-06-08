@@ -14,7 +14,7 @@ public class GameStateManager : MonoBehaviour
     private float playersDistanceThresh;
 
     [HideInInspector]
-    public bool playersInContact;      
+    public bool playersInContact;    
 
     void Awake()
     {
@@ -43,7 +43,8 @@ public class GameStateManager : MonoBehaviour
     {
         Vector3 redPlayerPos = this.redPlayer.transform.position;
         Vector3 bluePlayerPos = this.bluePlayer.transform.position;
-        float dist = Vector3.Distance(redPlayerPos, bluePlayerPos);
+        float dist= Vector3.Distance(redPlayerPos, bluePlayerPos);
+        
 
         playersInContact = false;
         if (dist <= playersDistanceThresh) playersInContact = true;

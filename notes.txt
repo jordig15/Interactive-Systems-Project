@@ -1,0 +1,61 @@
+- QUe quan un objecte que no pertany a una habitació, es deixa en aquella habitació, que quan tornem, es mantingués allà.  OK
+
+
+PROBLEMA: La instance no s'actualitza, i quan intentem accedir als valor que hi ha, no s'actualitzen1! 
+POSSIBLE SOLUCIÓ: TAG!!
+SOLUCIONAT!!!!
+
+- Que quan un objecte es deixi al terra, torni a la habitació inicial OK
+
+-------------------------------------------------------------------------------------
+
+- Crear el script per interaccionar entre objectes
+	- PROBLEMA: No es guarda la informació de si la foguera ha estat apagada o no quan canvies d'habitació
+	- SOLUCIÓ: TAG
+- Veure que fem amb els objectes quan ja han interaccionat.
+- Probar sons
+
+
+4 i 5, canviar la porta
+----------------------
+
+
+PROVES:
+0:
+	- Extintor ->
+		FET! -> llar de foc (0) -> NO FA RES 
+		FET! -> llar de foc (3) -> NO FA RES
+		FET! -> cuina (5) -> soni una alarma de foc per tota la casa des del moment en que entres fins que s'apagui.
+1: 
+	FET! - Fregona -> aigua (2) -> pantalons (2) -> rentadora (5) -> tarjeta caixa forta (3) -> FINAL
+	FET! - Key4 -> Key Habitació 4
+	
+2: 
+	FET! -> aigua (fregona (1)) -> pantalons (2) -> rentadora (5) -> tarjeta caixa forta (3) -> FINAL
+	- pantalons (2) -> rentadora (5) -> tarjeta caixa forta (3) -> FINAL
+	FET! - Aspiradora -> -> Sorra (4) -> Key Habitació 5
+3: 
+	FET! - Porta 4 (Key4 (1))
+	FET! - Porta 5 (Key5 (4))
+	- Caixa forta (tarjeta de la rentadora (3)) -> CLAU PER SORTIR DE CASA (posar un so per a que es distingueixi que la clau es la del final / canviar de color)
+	FET! - Llar de foc (extintor) -> NO FA RES
+	
+4: 
+	FET! - Sorra (Aspiradora (2)) -> Key Habitació 5
+	
+5: 
+	FET! - cuina (extintor (0)) -> soni una alarma de foc per tota la casa des del moment en que entres fins que s'apagui.
+	- rentadora (pantalons (2)) -> QUAN TOTES LES PROVES S'HAGIN ACABAT -> tarjeta caixa forta (3) -> FINAL
+
+SONS:
+- Alarma per quan entres a la habitació 5 i fins que apagues el foc
+- Quan agafes el extintor
+- Quan apagues el foc amb el extintor
+- So per quan intentes accedir a una porta tancada amb clau.
+- So de sorra
+
+
+COSES A FER:
+- Sons
+- Treure els assets que no volem
+- Quan els dos jugadors estan junts i tenen cadascú un objecte

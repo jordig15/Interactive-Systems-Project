@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class ObjectScript : MonoBehaviour
 {
-    private GameObject DontDestroyEntities;    
+    public bool canAlwaysBeCatched = true;
+    public string canBeCatchedObjName;
+    private GameObject canBeCatchedObj;
 
-    private Vector3 objectPlayerDisp = new Vector3(-5.0f, 5.0f, -5.0f);
+    private GameObject DontDestroyEntities;
+
+    private Vector3 objectPlayerDisp = new Vector3(-10.0f, 10.0f, -5.0f);
 
     private float cooldown = 2.0f;
     private float coliderPlayerDist = 15.0f;
@@ -17,8 +21,8 @@ public class ObjectScript : MonoBehaviour
     private string redPlayerObjTag = "RedPlayerObject";    
     private string bluePlayerObjTag = "BluePlayerObject";
 
-
-    private GameObject catcherPlayer;
+    [HideInInspector]
+    public GameObject catcherPlayer;
     float firstTime;    
 
 
@@ -26,13 +30,22 @@ public class ObjectScript : MonoBehaviour
     void Awake()
     {        
         controlDuplicateObjects();
+        getCatcherPlayer();
 
         DontDestroyEntities = GameObject.Find("DontDestroyEntities");        
-        firstTime = -1.0f;
-        catcherPlayer = null;
+        firstTime = -1.0f;        
     }
 
-    private void controlDuplicateObjects() //cuenta el nº de objetos duplicados en la escena y los elimina
+    void Start()
+    {
+        canBeCatchedObj = GameObject.Find(canBeCatchedObjName);
+
+        catcherPlayer = null;
+        getCatcherPlayer();
+        Debug.Log(this.name + " | " + catcherPlayer);
+    }
+
+    void controlDuplicateObjects() //cuenta el nº de objetos duplicados en la escena y los elimina
     {
         int objectsCounter = 0;
 
@@ -56,44 +69,74 @@ public class ObjectScript : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {        
-
-        bool redPlayerNear = playerNearToObj(redPlayerName);
-        bool bluePlayerNear = playerNearToObj(bluePlayerName);        
-
-        if (catcherPlayer != null) //un jugador porta aquest objecte
-        {            
-            if (ObjectsManager.Instance.bluePlayerObject != null && bluePlayerNear) {  // BLUE PLAYER aprop del objecte i porta un altre               
-                updateObjectPos(ObjectsManager.Instance.bluePlayerObject, redPlayerNear, bluePlayerNear);
-            }
-
-            else if (ObjectsManager.Instance.redPlayerObject != null && redPlayerNear){ // RED PLAYER aprop del objecte i porta un altre
-                updateObjectPos(ObjectsManager.Instance.redPlayerObject, redPlayerNear, bluePlayerNear);
-            }
-            else if (firstTime != -1.0f) firstTime = -1.0f; //cap jugador està en posició de agafar un objecte
+    void getCatcherPlayer()
+    {
+        for (int i = 0; i < Object.FindObjectsOfType<ObjectScript>().Length; i++)
+        {
+            if (Object.FindObjectsOfType<ObjectScript>()[i] == this)
+            {
+                if(Object.FindObjectsOfType<ObjectScript>()[i].gameObject.tag == redPlayerObjTag)
+                {
+                    catcherPlayer = ObjectsManager.Instance.redPlayer;
+                }
+                else if (Object.FindObjectsOfType<ObjectScript>()[i].gameObject.tag == bluePlayerObjTag)
+                {                    
+                    catcherPlayer = ObjectsManager.Instance.bluePlayer;                    
+                }
+            }                                        
         }
-        else // cap jugador ha agafat l'objecte
+    }
+
+    void Update()
+    {
+        if (canAlwaysBeCatched)
+        {
+            UpdateObject();
+        }
+        else if(canBeCatchedObj.tag == "not active")
+        {            
+            UpdateObject();
+        }
+    }
+
+    void UpdateObject()
+    {
+        bool redPlayerNear = playerNearToObj(redPlayerName);
+        bool bluePlayerNear = playerNearToObj(bluePlayerName);
+        bool playersInContact = GameStateManager.Instance.playersInContact;
+
+        if (catcherPlayer == null) //ningú porta l'objecte
         {
             if (redPlayerNear || bluePlayerNear) //si algun jugador està aprop d'un objecte
             {
                 if (firstTime == -1.0f) firstTime = Time.time;
-                else if (testCooldown()) catchObject(redPlayerNear, bluePlayerNear);
+                else if (playersInContact == false && testCooldown()) catchObject(redPlayerNear, bluePlayerNear);
             }
-
             else if (firstTime != -1.0f) firstTime = -1.0f;
+        }
+
+        else // algú té l'objecte 
+        {
+            if (ObjectsManager.Instance.bluePlayerObject != null && bluePlayerNear)
+            {  // BLUE PLAYER aprop del objecte i porta un altre               
+                updateObjectPos(ObjectsManager.Instance.bluePlayerObject, redPlayerNear, bluePlayerNear, playersInContact);
+            }
+            else if (ObjectsManager.Instance.redPlayerObject != null && redPlayerNear)
+            { // RED PLAYER aprop del objecte i porta un altre
+                updateObjectPos(ObjectsManager.Instance.redPlayerObject, redPlayerNear, bluePlayerNear, playersInContact);
+            }
+            else if (firstTime != -1.0f) firstTime = -1.0f; //cap jugador està en posició de agafar un objecte
         }
     }
 
-    void updateObjectPos(ObjectScript playerObject, bool redPlayerNear, bool bluePlayerNear)
+    void updateObjectPos(ObjectScript playerObject, bool redPlayerNear, bool bluePlayerNear, bool playersInContact)
     {
         if (playerObject.transform == this.transform) //el objecte el té un jugador, actualitzar la seva posició
         {
             this.transform.position = catcherPlayer.transform.position + objectPlayerDisp;
         }
-        else  //iniciar el cooldown
-        {            
+        else if (!playersInContact)  //no es l'objecte que tenim, iniciar el cooldown per fer el intercanvi
+        {
             if (firstTime == -1.0f) firstTime = Time.time; //si no s'ha entrat al cooldown
             else if (testCooldown())
             {
@@ -108,14 +151,19 @@ public class ObjectScript : MonoBehaviour
         Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.z);
         Vector2 objPos = new Vector2(this.transform.position.x, this.transform.position.z);
         float dist = Vector2.Distance(playerPos, objPos);
-        if (dist < coliderPlayerDist) return true;
+
+        if (dist < coliderPlayerDist)
+        {
+            return true;
+        }
+        
         return false;
     }
 
     bool testCooldown()
     {
         float timeDif = Time.time - firstTime;
-        //Debug.Log(timeDif);
+        //Debug.Log("Object cooldown: " + timeDif);
         return (timeDif > cooldown);
     }
 
@@ -129,10 +177,12 @@ public class ObjectScript : MonoBehaviour
             catcherPlayer = GameObject.Find(redPlayerName);
 
             ObjectsManager.Instance.untagAllObjectsWithTag(redPlayerObjTag);            
-            gameObject.tag = redPlayerObjTag;            
+            gameObject.tag = redPlayerObjTag;     
+            
             if (ObjectsManager.Instance.redPlayerObject != null)
             {
-                ObjectsManager.Instance.redPlayerObject.transform.SetParent(DroppedObjects.transform);               
+                ObjectsManager.Instance.redPlayerObject.transform.SetParent(DroppedObjects.transform);
+                ObjectsManager.Instance.redPlayerObject.catcherPlayer = null;
                 ObjectsManager.Instance.redPlayerObject = null; // l'anterior objecte que estava agafant el jugador, ja no el té                                
             }            
         }
@@ -148,6 +198,7 @@ public class ObjectScript : MonoBehaviour
             if (ObjectsManager.Instance.bluePlayerObject != null)
             {
                 ObjectsManager.Instance.bluePlayerObject.transform.SetParent(DroppedObjects.transform);
+                ObjectsManager.Instance.bluePlayerObject.catcherPlayer = null;
                 ObjectsManager.Instance.bluePlayerObject = null; // l'anterior objecte que estava agafant el jugador, ja no el té                
             }            
         }

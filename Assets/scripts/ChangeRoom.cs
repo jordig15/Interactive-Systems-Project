@@ -5,7 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class ChangeRoom : MonoBehaviour
 {
-    public string nextSceneName;    
+    public string nextSceneName;
+
+    //portes amb clau
+    public bool keyRequired = false;
+
+    public string keyContainerName;
+    private GameObject container;
 
     private GameObject redPlayer;
     private GameObject bluePlayer;    
@@ -22,6 +28,8 @@ public class ChangeRoom : MonoBehaviour
         redPlayer = GameObject.Find("Red Player");
         bluePlayer = GameObject.Find("Blue Player");
 
+        container = GameObject.Find(keyContainerName);
+
         firstTime = -1.0f;        
     }
 
@@ -31,12 +39,33 @@ public class ChangeRoom : MonoBehaviour
         bool playersInContact = GameStateManager.Instance.playersInContact;
 
         if (playersInContact && playerNearToDoor())
-        {        
-            if(firstTime == -1.0f) firstTime = Time.time; 
-            else if (testCooldown()) changeRoom();            
+        {
+            if (!keyRequired || (keyRequired && isDoorOpened()))
+            {
+                if (firstTime == -1.0f) firstTime = Time.time;
+                else if (testCooldown()) changeRoom();
+            }
+                       
         }
 
         else if(firstTime != -1.0f) firstTime = -1.0f;
+    }
+
+    bool isDoorOpened()
+    {
+        
+        if (container.tag == "active")
+        {
+            return false;
+        }
+        else if (container.tag == "not active")
+        {
+            return true;
+        }
+        
+
+        Debug.Log("ERROR isDoorOpened()");
+        return true;
     }
 
     bool playerNearToDoor()

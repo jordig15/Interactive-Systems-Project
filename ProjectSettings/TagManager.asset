@@ -9,6 +9,8 @@ TagManager:
   - Player2
   - BluePlayerObject
   - RedPlayerObject
+  - active
+  - not active
   layers:
   - Default
   - TransparentFX

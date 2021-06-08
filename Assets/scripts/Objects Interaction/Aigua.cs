@@ -2,47 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LlarDeFoc : MonoBehaviour
+public class Aigua : MonoBehaviour
 {
     public float colliderPlayerDist = 10.0f;
     public float cooldown = 1.5f;
-    public string extintorName = "Fire Extinguisher";
+    public string fregonaName = "mop";
     public string containerName;
 
     private string redPlayerName = "Red Player";
     private string bluePlayerName = "Blue Player";
     private float firstTime;
-
-    private GameObject focGameObject;
+    
     private GameObject container;
 
-    private bool focActive;
+    private bool aiguaActive;
     // Start is called before the first frame update
     void Start()
     {
         firstTime = -1.0f;                
-
-        focGameObject = GameObject.Find("fire");
-        container = GameObject.Find(containerName);        
+        
+        container = GameObject.Find(containerName);
+        Debug.Log(container);
         if(container.tag == "active")
         {
-            focActive = true;
-            focGameObject.active = true;
+            aiguaActive = true;            
         }
         else if(container.tag == "not active")
         {
-            focActive = false;
-            focGameObject.active = false; //posar inactiu el foc al joc
+            aiguaActive = false;
+            this.gameObject.active = false;
         }
     }
 
     // Update is called once per frame
     void Update()
     {        
-        if (focActive) UpdateLlarDeFoc();
+        if (aiguaActive) UpdateAigua();
     }
 
-    void UpdateLlarDeFoc()
+    void UpdateAigua()
     {
         bool redPlayerNear = playerNearToObj(redPlayerName);
         bool bluePlayerNear = playerNearToObj(bluePlayerName);
@@ -51,24 +49,24 @@ public class LlarDeFoc : MonoBehaviour
         {
             if (redPlayerNear && ObjectsManager.Instance.redPlayerObject != null) //vermell aprop de la llar de foc i porta algun objecte
             {
-                if (ObjectsManager.Instance.redPlayerObject.gameObject.name == extintorName) //vermell aprop i porta un extintor
+                if (ObjectsManager.Instance.redPlayerObject.gameObject.name == fregonaName) //vermell aprop i porta un extintor
                 {
                     if (firstTime == -1.0f) firstTime = Time.time; //si no s'ha entrat al cooldown
                     else if (testCooldown())
                     {
-                        Debug.Log("RED PLAYER APAGA FOC");
+                        Debug.Log("RED PLAYER FREGA EL TERRA");
                         interact();
                     }                   
                 }
             }
             else if (bluePlayerNear && ObjectsManager.Instance.bluePlayerObject != null) //blau aprop de la llar de foc i porta algun objecte
             {
-                if (ObjectsManager.Instance.bluePlayerObject.gameObject.name == extintorName) //blau aprop i porta un extintor
+                if (ObjectsManager.Instance.bluePlayerObject.gameObject.name == fregonaName) //blau aprop i porta un extintor
                 {
                     if (firstTime == -1.0f) firstTime = Time.time; //si no s'ha entrat al cooldown
                     else if (testCooldown())
                     {
-                        Debug.Log("BLUE PLAYER APAGA FOC");
+                        Debug.Log("BLUE PLAYER FREGA EL TERRA");
                         interact();
                     }                    
                 }
@@ -78,11 +76,28 @@ public class LlarDeFoc : MonoBehaviour
     }
 
     void interact()
-    {
-        focGameObject.active = false; //posar inactiu el foc al joc
-        focActive = false;
+    {        
+        aiguaActive = false;
+        this.gameObject.active = false;
+
         container.tag = "not active";
-        
+
+        GameObject DroppedObjects = GameObject.Find("DroppedObjects");
+
+        if (ObjectsManager.Instance.redPlayerObject.gameObject.name == fregonaName)
+        {
+            ObjectsManager.Instance.redPlayerObject.gameObject.active = false;
+            ObjectsManager.Instance.redPlayerObject.transform.SetParent(DroppedObjects.transform);
+            ObjectsManager.Instance.redPlayerObject.catcherPlayer = null;
+            ObjectsManager.Instance.redPlayerObject = null; // l'anterior objecte que estava agafant el jugador, ja no el té  
+        }
+        else if (ObjectsManager.Instance.bluePlayerObject.gameObject.name == fregonaName)
+        {
+            ObjectsManager.Instance.bluePlayerObject.gameObject.active = false;
+            ObjectsManager.Instance.bluePlayerObject.transform.SetParent(DroppedObjects.transform);
+            ObjectsManager.Instance.bluePlayerObject.catcherPlayer = null;
+            ObjectsManager.Instance.bluePlayerObject = null; // l'anterior objecte que estava agafant el jugador, ja no el té
+        }
     }
 
     bool playerNearToObj(string playerName)

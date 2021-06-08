@@ -502,12 +502,17 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 96b8fe3658882fd4ab2c0a1228375375,
         type: 3}
       propertyPath: m_Name
-      value: merda escombra
+      value: mop
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 96b8fe3658882fd4ab2c0a1228375375,
         type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152286838506878178, guid: 96b8fe3658882fd4ab2c0a1228375375,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96b8fe3658882fd4ab2c0a1228375375, type: 3}
@@ -535,6 +540,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: def00a163c634dc4098fafdbccb82e2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canAlwaysBeCatched: 1
+  canBeCatchedObjName: 
+  catcherPlayer: {fileID: 0}
 --- !u!1 &696408880
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,12 +1042,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1156148564}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc744c11b430be044bc50d6888c63f37, type: 3}
+  m_Script: {fileID: 11500000, guid: def00a163c634dc4098fafdbccb82e2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 1156148564}
-  colliderPlayersDist: 15
-  cooldown: 1.5
+  canAlwaysBeCatched: 1
+  canBeCatchedObjName: 
+  catcherPlayer: {fileID: 0}
 --- !u!1 &1205804932
 GameObject:
   m_ObjectHideFlags: 0

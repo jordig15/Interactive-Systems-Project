@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LlarDeFoc : MonoBehaviour
+public class Cuina : MonoBehaviour
 {
     public float colliderPlayerDist = 10.0f;
     public float cooldown = 1.5f;

@@ -806,12 +806,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 508131456}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc744c11b430be044bc50d6888c63f37, type: 3}
+  m_Script: {fileID: 11500000, guid: def00a163c634dc4098fafdbccb82e2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 508131456}
-  colliderPlayersDist: 15
-  cooldown: 1.5
+  canAlwaysBeCatched: 0
+  canBeCatchedObjName: sorra
+  catcherPlayer: {fileID: 0}
 --- !u!1001 &523251956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -937,7 +937,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5edbe67aa8e9bd84ab660db3f0dbb73a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.17
+      value: 8.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5edbe67aa8e9bd84ab660db3f0dbb73a,
         type: 3}
@@ -1012,6 +1012,28 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 674169731}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &674169733 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5edbe67aa8e9bd84ab660db3f0dbb73a,
+    type: 3}
+  m_PrefabInstance: {fileID: 674169731}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &674169734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674169733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da462357a9cb644daf24f97f2ca40ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderPlayerDist: 10
+  cooldown: 1.5
+  aspiradoraName: VacuumCleaner
+  containerName: sorra
 --- !u!1001 &750249307
 PrefabInstance:
   m_ObjectHideFlags: 0
