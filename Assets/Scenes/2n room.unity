@@ -1665,6 +1665,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canAlwaysBeCatched: 0
   canBeCatchedObjName: water
+  soundActivated: 0
+  sound: {fileID: 0}
   catcherPlayer: {fileID: 0}
 --- !u!1 &2072665850
 GameObject:
@@ -2104,6 +2106,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canAlwaysBeCatched: 1
   canBeCatchedObjName: 
+  soundActivated: 0
+  sound: {fileID: 0}
   catcherPlayer: {fileID: 0}
 --- !u!4 &3313842929161889726 stripped
 Transform:

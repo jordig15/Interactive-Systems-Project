@@ -19,7 +19,7 @@ public class ObjectScript : MonoBehaviour
     private string bluePlayerName = "Blue Player";
 
     private string redPlayerObjTag = "RedPlayerObject";    
-    private string bluePlayerObjTag = "BluePlayerObject";
+    private string bluePlayerObjTag = "BluePlayerObject";    
 
     [HideInInspector]
     public GameObject catcherPlayer;
@@ -168,8 +168,7 @@ public class ObjectScript : MonoBehaviour
     }
 
     void catchObject(bool redPlayerNear, bool bluePlayerNear)
-    {
-
+    {      
         GameObject DroppedObjects = GameObject.Find("DroppedObjects");
 
         if (redPlayerNear)

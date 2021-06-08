@@ -17,6 +17,9 @@ public class Cuina : MonoBehaviour
     private GameObject container;
 
     private bool focActive;
+
+    //sound
+    public AudioClip sound;
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +82,11 @@ public class Cuina : MonoBehaviour
 
     void interact()
     {
+        if (sound != null)
+        {
+            SoundManager.Instance.playObjectInteractionSound(sound);
+        }
+
         focGameObject.active = false; //posar inactiu el foc al joc
         focActive = false;
         container.tag = "not active";

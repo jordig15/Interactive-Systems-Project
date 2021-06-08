@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Corridor.unity
+    path: Assets/prefabs/ALL PREFABS/Corridor.unity
     guid: 7e542174377b8df43a46e0a6771eccf3
   - enabled: 1
     path: Assets/Scenes/1st room.unity

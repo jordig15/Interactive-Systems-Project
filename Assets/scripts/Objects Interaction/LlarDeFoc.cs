@@ -16,6 +16,9 @@ public class LlarDeFoc : MonoBehaviour
     private GameObject focGameObject;
     private GameObject container;
 
+    //sound
+    public AudioClip sound;
+
     private bool focActive;
     // Start is called before the first frame update
     void Start()
@@ -79,6 +82,11 @@ public class LlarDeFoc : MonoBehaviour
 
     void interact()
     {
+        if (sound != null)
+        {
+            SoundManager.Instance.playObjectInteractionSound(sound);
+        }
+
         focGameObject.active = false; //posar inactiu el foc al joc
         focActive = false;
         container.tag = "not active";

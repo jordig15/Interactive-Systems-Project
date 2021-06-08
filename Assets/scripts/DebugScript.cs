@@ -51,6 +51,48 @@ public class DebugScript : MonoBehaviour
             {
                 key4.tag = "active";
                 Debug.Log("PORTA 5 BLOQUEJADA!!");
+            }            
+        }
+        if (Input.GetKeyDown("0"))
+        {
+            GameObject finalKey = GameObject.Find("finalKeyContainer");
+            if (finalKey.tag == "active")
+            {
+                finalKey.tag = "not active";
+                Debug.Log("PORTA FINAL DESBLOQUEJADA!!");
+            }
+            else if (finalKey.tag == "not active")
+            {
+                finalKey.tag = "active";
+                Debug.Log("PORTA FINAL DESBLOQUEJADA!!");
+            }
+        }
+        if (Input.GetKeyDown("c"))
+        {
+            GameObject cuina = GameObject.Find("cuina");
+            if (cuina.tag == "active")
+            {
+                cuina.tag = "not active";
+                Debug.Log("FOC CUINA APAGAT!!");
+            }
+            else if (cuina.tag == "not active")
+            {
+                cuina.tag = "active";
+                Debug.Log("FOC CUINA ENCÉS!!");
+            }
+        }
+        if (Input.GetKeyDown("r"))
+        {
+            GameObject roba = GameObject.Find("roba");
+            if (roba.tag == "active")
+            {
+                roba.tag = "not active";
+                Debug.Log("TRAJE A LA RENTADORA, I RENTADORA ACABADA!!");
+            }
+            else if (roba.tag == "not active")
+            {
+                roba.tag = "active";
+                Debug.Log("TRAJE NO ESTÀ A LA RENTADORA, CAL POSAR-LA!!");
             }
         }
     }

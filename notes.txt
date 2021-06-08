@@ -53,9 +53,14 @@ SONS:
 - Quan apagues el foc amb el extintor
 - So per quan intentes accedir a una porta tancada amb clau.
 - So de sorra
+- So per quan obres la caixa forta (sencer) i quan t'apropes a la trajeta retallar el so.
+
+- So de foc continu per posar-ho en loop a la cuina
 
 
 COSES A FER:
 - Sons
 - Treure els assets que no volem
 - Quan els dos jugadors estan junts i tenen cadascú un objecte
+- Trajeta per a la caixa forta
+- Clau final
