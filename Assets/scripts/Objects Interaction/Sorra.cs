@@ -118,7 +118,7 @@ public class Sorra : MonoBehaviour
 
         if (!SoundManager.Instance.IsPlaying(aspiradoraSoundName))
         {
-            SoundManager.Instance.Play(aspiradoraSoundName);
+            SoundManager.Instance.Play(aspiradoraSoundName);    
         }        
 
         return (timeDif > cooldown);
