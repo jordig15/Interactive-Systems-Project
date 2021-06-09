@@ -9,6 +9,9 @@ public class Sorra : MonoBehaviour
     public string aspiradoraName = "VacuumCleaner";
     public string containerName;
 
+    //sound
+    public string aspiradoraSoundName = "vacuumCleaner";
+
     private string redPlayerName = "Red Player";
     private string bluePlayerName = "Blue Player";
     private float firstTime;
@@ -80,7 +83,7 @@ public class Sorra : MonoBehaviour
         this.gameObject.active = false;
         container.tag = "not active";
 
-        GameObject DroppedObjects = GameObject.Find("DroppedObjects");
+        GameObject DroppedObjects = GameObject.Find("DroppedObjects");        
 
         if (ObjectsManager.Instance.redPlayerObject.gameObject.name == aspiradoraName)
         {
@@ -95,10 +98,10 @@ public class Sorra : MonoBehaviour
             ObjectsManager.Instance.bluePlayerObject.transform.SetParent(DroppedObjects.transform);
             ObjectsManager.Instance.bluePlayerObject.catcherPlayer = null;
             ObjectsManager.Instance.bluePlayerObject = null; // l'anterior objecte que estava agafant el jugador, ja no el té
-        }
+        }       
     }
 
-            bool playerNearToObj(string playerName)
+    bool playerNearToObj(string playerName)
     {
         GameObject player = GameObject.Find(playerName);
         Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.z);
@@ -112,6 +115,12 @@ public class Sorra : MonoBehaviour
     {
         float timeDif = Time.time - firstTime;
         Debug.Log(timeDif);
+
+        if (!SoundManager.Instance.IsPlaying(aspiradoraSoundName))
+        {
+            SoundManager.Instance.Play(aspiradoraSoundName);
+        }        
+
         return (timeDif > cooldown);
     }
 

@@ -15,6 +15,8 @@ public class KeyDoor : MonoBehaviour
     
     private GameObject container;
 
+    private string dooOpeningSoundName = "doorOpening";
+
     private bool doorClosed;
     // Start is called before the first frame update
     void Start()
@@ -89,7 +91,8 @@ public class KeyDoor : MonoBehaviour
     void interact()
     {        
         doorClosed = false;
-        container.tag = "not active";        
+        container.tag = "not active";
+        SoundManager.Instance.Play(dooOpeningSoundName);
     }
 
     bool playerNearToObj(string playerName)

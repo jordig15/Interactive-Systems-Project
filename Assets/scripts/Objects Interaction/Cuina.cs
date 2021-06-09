@@ -17,9 +17,10 @@ public class Cuina : MonoBehaviour
     private GameObject container;
 
     private bool focActive;
+    public string alarmaSoundName = "alarmaFoc";
 
     //sound
-    public AudioClip sound;
+    public string soundExtintorName = "extintor";
     // Start is called before the first frame update
     void Start()
     {
@@ -82,9 +83,10 @@ public class Cuina : MonoBehaviour
 
     void interact()
     {
-        if (sound != null)
+        if (soundExtintorName != null)
         {
-            SoundManager.Instance.playObjectInteractionSound(sound);
+            SoundManager.Instance.Play(soundExtintorName);
+            SoundManager.Instance.Stop(alarmaSoundName);
         }
 
         focGameObject.active = false; //posar inactiu el foc al joc

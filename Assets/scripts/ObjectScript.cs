@@ -19,7 +19,11 @@ public class ObjectScript : MonoBehaviour
     private string bluePlayerName = "Blue Player";
 
     private string redPlayerObjTag = "RedPlayerObject";    
-    private string bluePlayerObjTag = "BluePlayerObject";    
+    private string bluePlayerObjTag = "BluePlayerObject";
+
+    //sound
+    public bool catchSound = false;
+    public string catchSoundName;
 
     [HideInInspector]
     public GameObject catcherPlayer;
@@ -41,8 +45,7 @@ public class ObjectScript : MonoBehaviour
         canBeCatchedObj = GameObject.Find(canBeCatchedObjName);
 
         catcherPlayer = null;
-        getCatcherPlayer();
-        Debug.Log(this.name + " | " + catcherPlayer);
+        getCatcherPlayer();        
     }
 
     void controlDuplicateObjects() //cuenta el nº de objetos duplicados en la escena y los elimina
@@ -205,7 +208,12 @@ public class ObjectScript : MonoBehaviour
         firstTime = -1.0f;        
         this.transform.SetParent(DontDestroyEntities.transform);        
 
-        ObjectsManager.Instance.catchObject(catcherPlayer.name, this);        
+        ObjectsManager.Instance.catchObject(catcherPlayer.name, this);
+
+        if (catchSound)
+        {
+            SoundManager.Instance.Play(catchSoundName);
+        }
     }
 
 }

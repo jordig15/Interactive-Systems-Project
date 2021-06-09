@@ -9,6 +9,7 @@ public class ChangeRoom : MonoBehaviour
 
     //portes amb clau
     public bool keyRequired = false;
+    private string doorLockedSoundName = "doorLocked";
 
     public string keyContainerName;
     private GameObject container;
@@ -17,7 +18,7 @@ public class ChangeRoom : MonoBehaviour
     private GameObject bluePlayer;    
 
     private float cooldown = 1.0f;
-    private float colliderPlayersDist = 20.0f;
+    private float colliderPlayersDist = 8.0f;
 
     private float firstTime;    
     private bool playersInContact;
@@ -45,6 +46,13 @@ public class ChangeRoom : MonoBehaviour
                 if (firstTime == -1.0f) firstTime = Time.time;
                 else if (testCooldown()) changeRoom();
             }
+            else if(keyRequired && !isDoorOpened()) //door closed
+            {
+                if (!SoundManager.Instance.IsPlaying(doorLockedSoundName))
+                {
+                    SoundManager.Instance.Play(doorLockedSoundName);
+                }               
+            }
                        
         }
 
@@ -69,8 +77,11 @@ public class ChangeRoom : MonoBehaviour
     }
 
     bool playerNearToDoor()
-    {
-        if (Vector3.Distance(GetComponent<Collider>().transform.position, redPlayer.transform.position) < colliderPlayersDist) return true;
+    {        
+        Vector2 playerPos = new Vector2(redPlayer.transform.position.x, redPlayer.transform.position.z);
+        Vector2 objPos = new Vector2(GetComponent<Collider>().transform.position.x, GetComponent<Collider>().transform.position.z);
+        float dist = Vector2.Distance(playerPos, objPos);
+        if (dist < colliderPlayersDist) return true;
         return false;
     }
 

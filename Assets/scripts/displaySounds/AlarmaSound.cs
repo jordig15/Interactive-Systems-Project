@@ -5,6 +5,7 @@ using UnityEngine;
 public class AlarmaSound : MonoBehaviour
 {
     public string cuinaName;
+    public string alarmaSoundName = "alarmaFoc";
 
     private GameObject cuina;
     //private AudioSource alarmaFocSource;
@@ -17,7 +18,7 @@ public class AlarmaSound : MonoBehaviour
 
         if (cuina.tag == "active")
         {            
-            SoundManager.Instance.playAlarmaSound();
+            SoundManager.Instance.Play(alarmaSoundName);
         }
     }
 

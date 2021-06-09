@@ -48,13 +48,17 @@ PROVES:
 	- rentadora (pantalons (2)) -> QUAN TOTES LES PROVES S'HAGIN ACABAT -> tarjeta caixa forta (3) -> FINAL
 
 SONS:
-- Alarma per quan entres a la habitació 5 i fins que apagues el foc
-- Quan agafes el extintor
-- Quan apagues el foc amb el extintor
-- So per quan intentes accedir a una porta tancada amb clau.
-- So de sorra
+- Alarma per quan entres a la habitació 5 i fins que apagues el foc FET!
+- So quan agafes les claus FET!
+- Quan agafes el extintor FET!
+- Quan apagues el foc amb el extintor FET!
+- So per quan intentes accedir a una porta tancada amb clau FET!
+- So de sorra FET!
+- So per a utilitzar la aspiradora FET!
+- So per agafar la aspiradora
 - So per quan obres la caixa forta (sencer) i quan t'apropes a la trajeta retallar el so.
-
+- So per quan s'agafa la escombra
+- So per quan vas escombrant
 - So de foc continu per posar-ho en loop a la cuina
 
 
@@ -64,3 +68,11 @@ COSES A FER:
 - Quan els dos jugadors estan junts i tenen cadascú un objecte
 - Trajeta per a la caixa forta
 - Clau final
+- Quan cliquis, 4 i 5, que s'escolti algo
+- quan deixes un objecte a una habitació que no es la seva, torna, pero no a la seva posició original
+
+
+COSES A MILLORAR:
+- Les portes més allunyades de les pareds FET!
+- L'aigua que puguis accedir-hi desde qualsevol lloc FET!
+- Fantasmas per sobre de tot FET!
