@@ -14,12 +14,9 @@ SOLUCIONAT!!!!
 	- SOLUCIÓ: TAG
 - Veure que fem amb els objectes quan ja han interaccionat.
 - Probar sons
-
-
-4 i 5, canviar la porta
 ----------------------
 
-
+	
 PROVES:
 0:
 	- Extintor ->
@@ -59,14 +56,14 @@ SONS:
 - So per quan obres la caixa forta (sencer) i quan t'apropes a la trajeta retallar el so.
 - So per quan s'agafa la escombra
 - So per quan vas escombrant
-- So de foc continu per posar-ho en loop a la cuina
+- So de foc continu per posar-ho en loop a la cuina FET!
 
 
 COSES A FER:
 - Sons
 - Treure els assets que no volem
 - Quan els dos jugadors estan junts i tenen cadascú un objecte
-- Trajeta per a la caixa forta
+- Trajeta per a la caixa forta FET!
 - Clau final
 - Quan cliquis, 4 i 5, que s'escolti algo
 - quan deixes un objecte a una habitació que no es la seva, torna, pero no a la seva posició original

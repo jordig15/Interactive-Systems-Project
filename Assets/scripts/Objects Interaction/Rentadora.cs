@@ -31,24 +31,35 @@ public class Rentadora : MonoBehaviour
     public string rentadoraName;
     private GameObject rentadoraContainer;
 
+    //rentadora sound
+    public string rentadoraStartSound = "rentadoraStart";
+    public string rentadoraEndSound = "rentadoraEnd";
+
+    //tarjeta appear sound
+    public string tarjetaAppearSoundName = "tarjetaAppear";
+    private bool endSoundPlayed = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        firstTime = -1.0f;                
-        
+        firstTime = -1.0f;
+        bool endSoundPlayed = false;
+
         robaContainer = GameObject.Find(containerName);
         cuinaContainer = GameObject.Find(cuinaName);
         tarjetaContainer = GameObject.Find(tarjetaName);
         rentadoraContainer = GameObject.Find(rentadoraName);
 
-        if(robaContainer.tag == "active")
-        {            
-        }
-        else if(robaContainer.tag == "not active")
-        {            
-            this.gameObject.active = false;
-        }
         checkFocCuinaApagat();
+
+        tarjetaContainer.active = false;
+        if(robaContainer.tag == "not active")
+        {
+            if (focCuinaActive == false)
+            {
+                tarjetaContainer.active = true;
+            }
+        }        
     }
 
     // Update is called once per frame
@@ -59,22 +70,25 @@ public class Rentadora : MonoBehaviour
         if(robaContainer.tag == "not active") //roba posada a la rentadora
         {
             checkFocCuinaApagat();
-            if(focCuinaActive == false)
+            if(focCuinaActive == false && !endSoundPlayed)
             {
                 rentadoraContainer.tag = "not active";
-                Debug.Log("S'HA TROBAT LA TARJETA");
+                Debug.Log("S'HA TROBAT LA TARJETA, rentadora acabada");
+                tarjetaContainer.active = true;
+
+                if (!endSoundPlayed)
+                {                   
+                    SoundManager.Instance.Play2(rentadoraEndSound, 2);
+                    SoundManager.Instance.Play2(tarjetaAppearSoundName, 7);
+                    endSoundPlayed = true;
+                }                
             }            
         }
 
-        if(rentadoraContainer.tag == "active")
+        if(rentadoraContainer.tag == "active") //rentadora acabada
         {
             tarjetaContainer.active = false;
         }
-        else if(rentadoraContainer.tag == "not active")
-        {
-            tarjetaContainer.active = true;
-        }
-
     }
 
     void checkFocCuinaApagat()
@@ -126,7 +140,7 @@ public class Rentadora : MonoBehaviour
 
     void interact()
     {                
-        robaContainer.tag = "not active"; //
+        robaContainer.tag = "not active";        
 
         GameObject DroppedObjects = GameObject.Find("DroppedObjects");
 
@@ -145,7 +159,8 @@ public class Rentadora : MonoBehaviour
             ObjectsManager.Instance.bluePlayerObject = null; // l'anterior objecte que estava agafant el jugador, ja no el té
         }
 
-        //FER QUE APAREIXI LA TARJETA PER A OBRIR LA CAIXA FORTA!
+        SoundManager.Instance.Play(rentadoraStartSound);
+
     }
 
     bool playerNearToObj(string playerName)
@@ -161,7 +176,7 @@ public class Rentadora : MonoBehaviour
     bool testCooldown()
     {
         float timeDif = Time.time - firstTime;
-        Debug.Log(timeDif);
+        //Debug.Log(timeDif);
         return (timeDif > cooldown);
     }
 

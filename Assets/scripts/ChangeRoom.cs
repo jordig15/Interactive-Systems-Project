@@ -79,7 +79,7 @@ public class ChangeRoom : MonoBehaviour
     bool playerNearToDoor()
     {        
         Vector2 playerPos = new Vector2(redPlayer.transform.position.x, redPlayer.transform.position.z);
-        Vector2 objPos = new Vector2(GetComponent<Collider>().transform.position.x, GetComponent<Collider>().transform.position.z);
+        Vector2 objPos = new Vector2(this.transform.position.x, this.transform.position.z);
         float dist = Vector2.Distance(playerPos, objPos);
         if (dist < colliderPlayersDist) return true;
         return false;

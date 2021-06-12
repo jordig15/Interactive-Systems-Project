@@ -247,7 +247,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &359289474
+--- !u!1 &492749298
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -255,8 +255,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 359289475}
-  - component: {fileID: 359289476}
+  - component: {fileID: 492749299}
+  - component: {fileID: 492749300}
   m_Layer: 0
   m_Name: Game State Manager
   m_TagString: Untagged
@@ -264,27 +264,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &359289475
+--- !u!4 &492749299
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 359289474}
+  m_GameObject: {fileID: 492749298}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1014244480}
+  m_Father: {fileID: 991779027}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &359289476
+--- !u!114 &492749300
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 359289474}
+  m_GameObject: {fileID: 492749298}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca9b5a50d2832f847b9d5e85ad147375, type: 3}
@@ -713,7 +713,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 988636582}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1014244479
+--- !u!1 &991779026
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -721,7 +721,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1014244480}
+  - component: {fileID: 991779027}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -729,19 +729,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1014244480
+--- !u!4 &991779027
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1014244479}
+  m_GameObject: {fileID: 991779026}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 359289475}
-  - {fileID: 1167688130}
+  - {fileID: 492749299}
+  - {fileID: 1221759110}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -837,7 +837,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &1167688129
+--- !u!1 &1221759109
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -845,8 +845,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1167688130}
-  - component: {fileID: 1167688131}
+  - component: {fileID: 1221759110}
+  - component: {fileID: 1221759111}
   m_Layer: 0
   m_Name: Sound Manager
   m_TagString: Untagged
@@ -854,27 +854,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1167688130
+--- !u!4 &1221759110
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1167688129}
+  m_GameObject: {fileID: 1221759109}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1014244480}
+  m_Father: {fileID: 991779027}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1167688131
+--- !u!114 &1221759111
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1167688129}
+  m_GameObject: {fileID: 1221759109}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d93dfca56064b241bf96d8747e52fff, type: 3}
@@ -903,7 +903,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: cdebe52b622a33c4fb79876b1f090638, type: 3}
     volume: 0.05
     pitch: 1
-    loop: 1
+    loop: 0
     source: {fileID: 0}
   - name: key
     clip: {fileID: 8300000, guid: 25bc92cf71d02b2468b620d81ffa2a10, type: 3}
@@ -938,6 +938,66 @@ MonoBehaviour:
   - name: vacuumCleaner
     clip: {fileID: 8300000, guid: 4a2806c2251f4384993dd640fda208b4, type: 3}
     volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: rentadoraStart
+    clip: {fileID: 8300000, guid: e5beb565c73633540b4b5ad8d8faeeda, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: tarjeta
+    clip: {fileID: 8300000, guid: cfe39c10ef0c0b54aa68ff256c5d6626, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: caixaForta
+    clip: {fileID: 8300000, guid: c63923f181977c544b84814102dba16a, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: tarjetaAppear
+    clip: {fileID: 8300000, guid: 5eb82326738f3024eae99dd54923c355, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: rentadoraEnd
+    clip: {fileID: 8300000, guid: 1f3065bec9efa5144a81eaf919e7efba, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: fireLoop
+    clip: {fileID: 8300000, guid: bd72b9601fb98c24a9902e8e31e788d6, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: wrongPass
+    clip: {fileID: 8300000, guid: c9b80fdac095f524ebd3c1f7028e97a7, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: catch_oobject2
+    clip: {fileID: 8300000, guid: c63923f181977c544b84814102dba16a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: water
+    clip: {fileID: 8300000, guid: 9006502b28871a244a3221e9625f3804, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: catch_oobject
+    clip: {fileID: 8300000, guid: 41b130b8409543145923d5ce58f90f44, type: 3}
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -1361,6 +1421,7 @@ GameObject:
   - component: {fileID: 1888908626}
   - component: {fileID: 1888908625}
   - component: {fileID: 1888908629}
+  - component: {fileID: 1888908630}
   m_Layer: 0
   m_Name: water
   m_TagString: Untagged
@@ -1439,7 +1500,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1888908624}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 73.1, y: 17, z: 51.2}
+  m_LocalPosition: {x: 73.1, y: 8.4, z: 51.2}
   m_LocalScale: {x: 20, y: 2, z: 50}
   m_Children: []
   m_Father: {fileID: 315594523}
@@ -1461,6 +1522,20 @@ MonoBehaviour:
   cooldown: 1.5
   fregonaName: mop
   containerName: water
+--- !u!114 &1888908630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888908624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af3aa9aaa30cbf479fa50d0ce0ce4b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AiguaName: water
+  waterSoundName: water
 --- !u!1 &1935370639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1945,8 +2020,32 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.28
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5636291407784110097, guid: 51cb01d5039285a4ba3203326e0a9c68, type: 3}
+    - {fileID: 5636291407784110098, guid: 51cb01d5039285a4ba3203326e0a9c68, type: 3}
+    - {fileID: 5636291407784110096, guid: 51cb01d5039285a4ba3203326e0a9c68, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 51cb01d5039285a4ba3203326e0a9c68, type: 3}
+--- !u!1 &4181565648004859820 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3797336557401849793, guid: 51cb01d5039285a4ba3203326e0a9c68,
+    type: 3}
+  m_PrefabInstance: {fileID: 4181565648004859819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4181565648004859821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4181565648004859820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c261d59ad88e96044aedcec42d5d8da6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextSceneName: Corridor
+  keyRequired: 0
+  keyContainerName: 
 --- !u!1001 &6109946980609070201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2082,6 +2181,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: VacuumCleaner
+      objectReference: {fileID: 0}
+    - target: {fileID: 8107108452565287928, guid: 3168b5806c22f1644a5dc3d34ce29276,
+        type: 3}
+      propertyPath: catchSound
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8107108452565287928, guid: 3168b5806c22f1644a5dc3d34ce29276,
+        type: 3}
+      propertyPath: catchSoundName
+      value: catch_oobject
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3168b5806c22f1644a5dc3d34ce29276, type: 3}
@@ -2312,7 +2421,7 @@ PrefabInstance:
     - target: {fileID: 5696642918283720093, guid: ef091b7166c19a7409601ca7ba29d1d8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.5
+      value: 3.4
       objectReference: {fileID: 0}
     - target: {fileID: 5696642918283720093, guid: ef091b7166c19a7409601ca7ba29d1d8,
         type: 3}
@@ -2358,6 +2467,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8901783808028483355, guid: ef091b7166c19a7409601ca7ba29d1d8,
+        type: 3}
+      propertyPath: catchSound
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8901783808028483355, guid: ef091b7166c19a7409601ca7ba29d1d8,
+        type: 3}
+      propertyPath: catchSoundName
+      value: catch_oobject2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef091b7166c19a7409601ca7ba29d1d8, type: 3}

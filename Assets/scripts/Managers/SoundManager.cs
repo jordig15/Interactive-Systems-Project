@@ -30,9 +30,30 @@ public class SoundManager : MonoBehaviour
         Play("theme");
     }
 
-    public void Play (string name)
+    public void Play (string name, string soundNameWaitFor = "")
+    {        
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        float waitTime = 0.1f;
+        if(soundNameWaitFor != "")
+        {
+            Sound wf = Array.Find(sounds, sound => sound.name == soundNameWaitFor);
+            waitTime = wf.clip.length;
+        }
+        StartCoroutine(playEngineSound(s, waitTime));
+    }
+
+    public void Play2(string name, float waitTime = 0)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
+        
+        StartCoroutine(playEngineSound(s, waitTime));
+    }
+
+    IEnumerator playEngineSound(Sound s, float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        
         s.source.Play();
     }
 
