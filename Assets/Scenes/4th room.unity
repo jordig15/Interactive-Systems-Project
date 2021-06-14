@@ -727,5 +727,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8152359601330662143, guid: 4f5891a2e5b48d7489c8ec8ad1173570,
+        type: 3}
+      propertyPath: collisionSound
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8152359601330662143, guid: 4f5891a2e5b48d7489c8ec8ad1173570,
+        type: 3}
+      propertyPath: sound1CollisionName
+      value: vacuumCleaner
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f5891a2e5b48d7489c8ec8ad1173570, type: 3}

@@ -36,7 +36,7 @@ public class ChangeRoom : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {        
         bool playersInContact = GameStateManager.Instance.playersInContact;
 
         if (playersInContact && playerNearToDoor())

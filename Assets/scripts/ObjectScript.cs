@@ -92,11 +92,11 @@ public class ObjectScript : MonoBehaviour
 
     void Update()
     {
-        if (canAlwaysBeCatched)
+        if (canAlwaysBeCatched) //si el objecte es pot agafar sempre durant la partida
         {
             UpdateObject();
         }
-        else if(canBeCatchedObj.tag == "not active")
+        else if(canBeCatchedObj.tag == "not active") //si el objecte no es pot agafar sempre pero està desbloquejat
         {            
             UpdateObject();
         }
@@ -106,45 +106,89 @@ public class ObjectScript : MonoBehaviour
     {
         bool redPlayerNear = playerNearToObj(redPlayerName);
         bool bluePlayerNear = playerNearToObj(bluePlayerName);
+        
         bool playersInContact = GameStateManager.Instance.playersInContact;
 
-        if (catcherPlayer == null) //ningú porta l'objecte
+        if (catcherPlayer == null) //ningú ha agafat l'objecte
         {
-            if (redPlayerNear || bluePlayerNear) //si algun jugador està aprop d'un objecte
+            if ((redPlayerNear || bluePlayerNear) && !playersInContact) //si algun jugador està aprop del objecte, i no estan els dos jugadors junts
             {
-                if (firstTime == -1.0f) firstTime = Time.time;
-                else if (playersInContact == false && testCooldown()) catchObject(redPlayerNear, bluePlayerNear);
+                if (firstTime == -1.0f) firstTime = Time.time; //inicialitza el cooldown 
+                else if (playersInContact == false && testCooldown()) //executa el cooldown
+                {                   
+                    catchObject(redPlayerNear, bluePlayerNear); //cooldown completat, agafa l'objecte
+                }
             }
-            else if (firstTime != -1.0f) firstTime = -1.0f;
+            else if (firstTime != -1.0f) firstTime = -1.0f; //el jugador s'allunya o es junten els dos, es reinicia el cooldown
         }
 
         else // algú té l'objecte 
         {
-            if (ObjectsManager.Instance.bluePlayerObject != null && bluePlayerNear)
-            {  // BLUE PLAYER aprop del objecte i porta un altre               
-                updateObjectPos(ObjectsManager.Instance.bluePlayerObject, redPlayerNear, bluePlayerNear, playersInContact);
-            }
-            else if (ObjectsManager.Instance.redPlayerObject != null && redPlayerNear)
-            { // RED PLAYER aprop del objecte i porta un altre
-                updateObjectPos(ObjectsManager.Instance.redPlayerObject, redPlayerNear, bluePlayerNear, playersInContact);
-            }
-            else if (firstTime != -1.0f) firstTime = -1.0f; //cap jugador està en posició de agafar un objecte
+            if ((ObjectsManager.Instance.bluePlayerObject != null && bluePlayerNear) || (ObjectsManager.Instance.redPlayerObject != null && redPlayerNear))
+            {  // algun dels dos jugadors té l'objecte
+
+                if (ObjectsManager.Instance.bluePlayerObject != null &&
+                ObjectsManager.Instance.bluePlayerObject.transform == this.transform) //l'objecte el porta el blau
+                {
+                    moveObject(); //mou el objecte a la posició del blau
+                }
+                else if (ObjectsManager.Instance.redPlayerObject != null &&
+                    ObjectsManager.Instance.redPlayerObject.transform == this.transform) //l'objecte el porta el vermell
+                {
+                    moveObject(); //mou el objecte a la posició del vermell
+                }
+            }            
         }
     }
 
-    void updateObjectPos(ObjectScript playerObject, bool redPlayerNear, bool bluePlayerNear, bool playersInContact)
+    void moveObject()
     {
-        if (playerObject.transform == this.transform) //el objecte el té un jugador, actualitzar la seva posició
+        this.transform.position = catcherPlayer.transform.position + objectPlayerDisp;
+    }
+
+    void catchObject(bool redPlayerNear, bool bluePlayerNear)
+    {
+        GameObject DroppedObjects = GameObject.Find("DroppedObjects");
+
+        if (redPlayerNear)
         {
-            this.transform.position = catcherPlayer.transform.position + objectPlayerDisp;
-        }
-        else if (!playersInContact)  //no es l'objecte que tenim, iniciar el cooldown per fer el intercanvi
-        {
-            if (firstTime == -1.0f) firstTime = Time.time; //si no s'ha entrat al cooldown
-            else if (testCooldown())
+            catcherPlayer = GameObject.Find(redPlayerName);
+
+            ObjectsManager.Instance.untagAllObjectsWithTag(redPlayerObjTag);
+            gameObject.tag = redPlayerObjTag;
+
+            if (ObjectsManager.Instance.redPlayerObject != null)
             {
-                catchObject(redPlayerNear, bluePlayerNear);
+                ObjectsManager.Instance.redPlayerObject.transform.SetParent(DroppedObjects.transform);
+                ObjectsManager.Instance.redPlayerObject.catcherPlayer = null;
+                ObjectsManager.Instance.redPlayerObject = null; // l'anterior objecte que estava agafant el jugador, ja no el té                                
             }
+        }
+
+
+        else if (bluePlayerNear)
+        {
+            catcherPlayer = GameObject.Find(bluePlayerName);
+
+            ObjectsManager.Instance.untagAllObjectsWithTag(bluePlayerObjTag);
+            gameObject.tag = bluePlayerObjTag;
+
+            if (ObjectsManager.Instance.bluePlayerObject != null)
+            {
+                ObjectsManager.Instance.bluePlayerObject.transform.SetParent(DroppedObjects.transform);
+                ObjectsManager.Instance.bluePlayerObject.catcherPlayer = null;
+                ObjectsManager.Instance.bluePlayerObject = null; // l'anterior objecte que estava agafant el jugador, ja no el té                
+            }
+        }
+
+        firstTime = -1.0f;
+        this.transform.SetParent(DontDestroyEntities.transform);
+
+        ObjectsManager.Instance.catchObject(catcherPlayer.name, this);
+
+        if (catchSound)
+        {
+            SoundManager.Instance.Play(catchSoundName);
         }
     }
 
@@ -168,52 +212,6 @@ public class ObjectScript : MonoBehaviour
         float timeDif = Time.time - firstTime;
         //Debug.Log("Object cooldown: " + timeDif);
         return (timeDif > cooldown);
-    }
-
-    void catchObject(bool redPlayerNear, bool bluePlayerNear)
-    {      
-        GameObject DroppedObjects = GameObject.Find("DroppedObjects");
-
-        if (redPlayerNear)
-        {
-            catcherPlayer = GameObject.Find(redPlayerName);
-
-            ObjectsManager.Instance.untagAllObjectsWithTag(redPlayerObjTag);            
-            gameObject.tag = redPlayerObjTag;     
-            
-            if (ObjectsManager.Instance.redPlayerObject != null)
-            {
-                ObjectsManager.Instance.redPlayerObject.transform.SetParent(DroppedObjects.transform);
-                ObjectsManager.Instance.redPlayerObject.catcherPlayer = null;
-                ObjectsManager.Instance.redPlayerObject = null; // l'anterior objecte que estava agafant el jugador, ja no el té                                
-            }            
-        }
-
-
-        else if (bluePlayerNear)
-        {
-            catcherPlayer = GameObject.Find(bluePlayerName);
-
-            ObjectsManager.Instance.untagAllObjectsWithTag(bluePlayerObjTag);            
-            gameObject.tag = bluePlayerObjTag;
-
-            if (ObjectsManager.Instance.bluePlayerObject != null)
-            {
-                ObjectsManager.Instance.bluePlayerObject.transform.SetParent(DroppedObjects.transform);
-                ObjectsManager.Instance.bluePlayerObject.catcherPlayer = null;
-                ObjectsManager.Instance.bluePlayerObject = null; // l'anterior objecte que estava agafant el jugador, ja no el té                
-            }            
-        }
-
-        firstTime = -1.0f;        
-        this.transform.SetParent(DontDestroyEntities.transform);        
-
-        ObjectsManager.Instance.catchObject(catcherPlayer.name, this);
-
-        if (catchSound)
-        {
-            SoundManager.Instance.Play(catchSoundName);
-        }
     }
 
 }

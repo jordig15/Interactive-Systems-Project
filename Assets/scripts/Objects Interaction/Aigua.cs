@@ -9,6 +9,8 @@ public class Aigua : MonoBehaviour
     public string fregonaName = "mop";
     public string containerName;
 
+    public string fregonaSound = "sand";
+
     private string redPlayerName = "Red Player";
     private string bluePlayerName = "Blue Player";
     private float firstTime;
@@ -21,8 +23,7 @@ public class Aigua : MonoBehaviour
     {
         firstTime = -1.0f;                
         
-        container = GameObject.Find(containerName);
-        Debug.Log(container);
+        container = GameObject.Find(containerName);        
         if(container.tag == "active")
         {
             aiguaActive = true;            
@@ -98,6 +99,8 @@ public class Aigua : MonoBehaviour
             ObjectsManager.Instance.bluePlayerObject.catcherPlayer = null;
             ObjectsManager.Instance.bluePlayerObject = null; // l'anterior objecte que estava agafant el jugador, ja no el té
         }
+
+        SoundManager.Instance.Play(fregonaSound);
     }
 
     bool playerNearToObj(string playerName)

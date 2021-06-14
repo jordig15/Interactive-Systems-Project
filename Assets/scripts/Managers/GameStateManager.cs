@@ -33,22 +33,21 @@ public class GameStateManager : MonoBehaviour
     {        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        updatePlayersInContact();        
+        updatePlayersInContact();
     }
 
-    void updatePlayersInContact()
+    public void updatePlayersInContact()
     {
         Vector3 redPlayerPos = this.redPlayer.transform.position;
         Vector3 bluePlayerPos = this.bluePlayer.transform.position;
         float dist= Vector3.Distance(redPlayerPos, bluePlayerPos);
-        
+            
 
         playersInContact = false;
+
         if (dist <= playersDistanceThresh) playersInContact = true;
 
-        //  Debug.Log(playersInContact);
     }    
 }

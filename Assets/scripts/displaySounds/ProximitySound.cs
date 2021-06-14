@@ -14,7 +14,8 @@ public class ProximitySound : MonoBehaviour
     public bool collisionSound = false;
     [HideInInspector]
     public bool canDisplay;
-    public string soundCollisionName;
+    public string sound1CollisionName;
+    public string sound2CollisionName = "";
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,8 @@ public class ProximitySound : MonoBehaviour
     {
         if (collisionSound)
         {
-            if (SoundManager.Instance.IsPlaying(soundCollisionName)) canDisplay = false;
+            if (sound1CollisionName != "" && SoundManager.Instance.IsPlaying(sound1CollisionName)) canDisplay = false;
+            else if (sound2CollisionName != "" && SoundManager.Instance.IsPlaying(sound2CollisionName)) canDisplay = false;
             else canDisplay = true;
         }       
 
