@@ -105,7 +105,7 @@ public class CaixaForta : MonoBehaviour
 
     void wrongPass()
     {
-        Debug.Log("merda");
+        Debug.Log("wrong pass");
         if (!SoundManager.Instance.IsPlaying(caixaFortaWrongSoundName))
         {
             SoundManager.Instance.Play(caixaFortaWrongSoundName);

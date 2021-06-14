@@ -144,14 +144,14 @@ public class Rentadora : MonoBehaviour
 
         GameObject DroppedObjects = GameObject.Find("DroppedObjects");
 
-        if (ObjectsManager.Instance.redPlayerObject.gameObject.name == robaName)
+        if (ObjectsManager.Instance.redPlayerObject != null && ObjectsManager.Instance.redPlayerObject.gameObject.name == robaName)
         {
             ObjectsManager.Instance.redPlayerObject.gameObject.active = false;
             ObjectsManager.Instance.redPlayerObject.transform.SetParent(DroppedObjects.transform);
             ObjectsManager.Instance.redPlayerObject.catcherPlayer = null;
             ObjectsManager.Instance.redPlayerObject = null; // l'anterior objecte que estava agafant el jugador, ja no el té  
         }
-        else if (ObjectsManager.Instance.bluePlayerObject.gameObject.name == robaName)
+        else if (ObjectsManager.Instance.bluePlayerObject != null && ObjectsManager.Instance.bluePlayerObject.gameObject.name == robaName)
         {
             ObjectsManager.Instance.bluePlayerObject.gameObject.active = false;
             ObjectsManager.Instance.bluePlayerObject.transform.SetParent(DroppedObjects.transform);

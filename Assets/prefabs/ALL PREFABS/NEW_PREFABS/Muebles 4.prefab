@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &8152359601330662143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2316689226085676036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3679abce9ff88d240a9b3f009e9368d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundDisplayProximity: 10
+  soundName: sand
+  collisionSound: 0
+  canDisplay: 0
+  soundCollisionName: vacuumCleaner
+--- !u!114 &1710836835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2473285392846554765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c261d59ad88e96044aedcec42d5d8da6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextSceneName: Corridor
+  keyRequired: 0
+  keyContainerName: 
 --- !u!1 &3235802532592804658
 GameObject:
   m_ObjectHideFlags: 0
@@ -35,23 +67,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8152359601330662143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2316689226085676036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3679abce9ff88d240a9b3f009e9368d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundDisplayProximity: 10
-  soundName: sand
-  collisionSound: 0
-  canDisplay: 0
-  soundCollisionName: vacuumCleaner
 --- !u!1001 &7039638815117679519
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -482,6 +497,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c20b59843f6bf94d85bc1b03d4a8910, type: 3}
+--- !u!1 &2473285392846554765 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6797158646878028038, guid: 4c20b59843f6bf94d85bc1b03d4a8910,
+    type: 3}
+  m_PrefabInstance: {fileID: 8936975865979062155}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2469312728734042953 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6792069164004592834, guid: 4c20b59843f6bf94d85bc1b03d4a8910,

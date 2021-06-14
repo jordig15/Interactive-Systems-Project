@@ -40,8 +40,7 @@ public class ObjectsManager : MonoBehaviour
     }
 
     void Update()
-    {
-        //Debug.Log("RED: " + redPlayerObject + " | BLUE: " + bluePlayerObject);
+    {       
     }
 
     public void catchObject(string catcherPlayerName, ObjectScript obj) // quan s'agafa un objecte

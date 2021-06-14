@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1144738155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3736006902035338959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c261d59ad88e96044aedcec42d5d8da6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextSceneName: Corridor
+  keyRequired: 0
+  keyContainerName: 
 --- !u!1 &4426414787818271600
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +276,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f025d7f0b0bc2e4480b76c25733291b, type: 3}
+--- !u!1 &3736006902035338959 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3667178166307302544, guid: 1f025d7f0b0bc2e4480b76c25733291b,
+    type: 3}
+  m_PrefabInstance: {fileID: 89114762061412959}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3733179896902081291 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3671122201803989332, guid: 1f025d7f0b0bc2e4480b76c25733291b,
