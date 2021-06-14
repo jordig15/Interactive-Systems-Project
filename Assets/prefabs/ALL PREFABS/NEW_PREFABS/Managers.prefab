@@ -161,7 +161,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: caixaForta
-    clip: {fileID: 8300000, guid: c63923f181977c544b84814102dba16a, type: 3}
+    clip: {fileID: 8300000, guid: dfea15965c417f549afa6a84b9065bd5, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
@@ -237,7 +237,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8552801184727075714}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

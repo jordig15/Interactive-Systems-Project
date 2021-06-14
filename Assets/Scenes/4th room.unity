@@ -663,6 +663,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1710836835, guid: 4f5891a2e5b48d7489c8ec8ad1173570, type: 3}
+      propertyPath: nextSceneName
+      value: 3rd room
+      objectReference: {fileID: 0}
     - target: {fileID: 3235802532592804658, guid: 4f5891a2e5b48d7489c8ec8ad1173570,
         type: 3}
       propertyPath: m_Name
